@@ -1,0 +1,186 @@
+:root {
+  --bg: #0a0e14;
+  --bg-deep: #05080c;
+  --surface: #0f141c;
+  --border: #1e2530;
+  --text: #c9d1d9;
+  --dim: #6e7681;
+  --green: #00d9a3;
+  --cyan: #79c0ff;
+  --yellow: #ffd33d;
+  --red: #ff6b6b;
+  --magenta: #ff7ab6;
+  --blue: #4f8cff;
+  --purple: #bc8cff;
+  --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(0, 217, 163, 0.06), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(121, 192, 255, 0.05), transparent 45%);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TERMINAL KUTUSU */
+.terminal {
+  width: 100%;
+  max-width: 950px;
+  height: min(90vh, 720px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.7),
+    0 0 100px rgba(0, 217, 163, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ÜST BAR */
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+  flex-shrink: 0;
+}
+.terminal__dots { display: flex; gap: 6px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.dot--red { background: #ff5f56; }
+.dot--yellow { background: #ffbd2e; }
+.dot--green { background: #27c93f; }
+.terminal__title {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  color: var(--dim);
+}
+.terminal__spacer { width: 60px; }
+
+/* EKRAN */
+.terminal__screen {
+  flex: 1;
+  padding: 16px 20px 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.terminal__screen::-webkit-scrollbar { width: 8px; }
+.terminal__screen::-webkit-scrollbar-track { background: transparent; }
+.terminal__screen::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.terminal__screen::-webkit-scrollbar-thumb:hover { background: #2e3542; }
+
+/* SATIRLAR */
+.line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 1px;
+  color: var(--text);
+}
+
+/* PROMPT */
+.prompt {
+  flex-shrink: 0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.p-user { color: var(--green); font-weight: 700; }
+.p-at { color: var(--dim); }
+.p-host { color: var(--cyan); font-weight: 700; }
+.p-colon { color: var(--dim); }
+.p-path { color: var(--yellow); font-weight: 700; }
+.p-dollar { color: var(--text); margin-left: 3px; }
+
+/* INPUT SATIRI */
+.input-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 22px;
+}
+.input-buffer {
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text);
+}
+.cursor {
+  display: inline-block;
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+  user-select: none;
+  font-weight: 400;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* RENKLER (span class) */
+.green { color: var(--green); }
+.cyan { color: var(--cyan); }
+.yellow { color: var(--yellow); }
+.red { color: var(--red); }
+.magenta { color: var(--magenta); }
+.blue { color: var(--blue); }
+.purple { color: var(--purple); }
+.dim { color: var(--dim); }
+.white { color: var(--white); }
+.bold { font-weight: 700; }
+
+/* DOSYA RENKLERİ */
+.dir { color: var(--blue); font-weight: 700; }
+.exec { color: var(--green); font-weight: 700; }
+.link { color: var(--cyan); }
+.archive { color: var(--red); }
+
+/* ASCII NEOFETCH */
+.ascii {
+  color: var(--cyan);
+  font-size: 11px;
+  line-height: 1.05;
+  text-shadow: 0 0 10px rgba(121, 192, 255, 0.4);
+}
+
+/* TABLO */
+.ls-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4px;
+}
+.ls-grid > span { min-width: 100px; }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  body { padding: 0; font-size: 13px; }
+  .terminal {
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .terminal__screen { padding: 12px 14px 20px; }
+  .ascii { font-size: 8px; }
+  .terminal__title { font-size: 11px; }
+  .terminal__spacer { width: 20px; }
+}
