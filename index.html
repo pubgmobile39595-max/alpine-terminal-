@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alpine Linux Terminal</title>
+<meta name="theme-color" content="#0a0e14" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23000'/><text x='50' y='72' font-family='monospace' font-size='50' font-weight='bold' fill='%2300d9a3' text-anchor='middle'>$</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="terminal" id="terminal">
+  <div class="terminal__bar">
+    <div class="terminal__dots">
+      <span class="dot dot--red"></span>
+      <span class="dot dot--yellow"></span>
+      <span class="dot dot--green"></span>
+    </div>
+    <div class="terminal__title">root@localhost: ~ — alpine</div>
+    <div class="terminal__spacer"></div>
+  </div>
+
+  <div class="terminal__screen" id="screen">
+    <!-- Çıktılar burada birikecek -->
+    <div id="output"></div>
+
+    <!-- Aktif input satırı -->
+    <div class="input-line" id="inputLine">
+      <span class="prompt" id="prompt">
+        <span class="p-user">root</span><span class="p-at">@</span><span class="p-host">localhost</span><span class="p-colon">:</span><span class="p-path">~</span><span class="p-dollar">#</span>
+      </span>
+      <span class="input-buffer" id="inputBuffer"></span>
+      <span class="cursor" id="cursor">█</span>
+    </div>
+  </div>
+</div>
+
+<!-- Gizli gerçek input (klavye için) -->
+<input type="text" id="hiddenInput" autocomplete="off" autocapitalize="off" spellcheck="false" 
+       style="position:fixed;opacity:0;pointer-events:none;width:1px;height:1px;top:-100px" />
+
+<script src="script.js"></script>
+</body>
+</html>
